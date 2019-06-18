@@ -1,0 +1,116 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity cronometro is
+	generic (
+		p_disp : INTEGER := 10
+	);
+	Port(
+		i_clk : in STD_LOGIC;
+		i_rst : in STD_LOGIC;
+		i_start : in STD_LOGIC;
+		i_stop : in STD_LOGIC;
+		i_restart : in STD_LOGIC;
+		o_display : out STD_LOGIC_VECTOR(p_disp-1 downto 0)
+	);
+end cronometro;
+
+architecture behavioral of cronometro is
+	-- Internal signals
+	----------------------------------------------------
+type w_state_type is (st_idle, st_run, st_stop);
+	attribute syn_encoding : string;
+	attribute syn_encoding of w_state_type : type is "safe";
+	
+	signal w_state : w_state_type;
+	signal w_cont  : STD_LOGIC_VECTOR(27 downto 0);
+	signal w_disp_0 : STD_LOGIC_VECTOR(9 downto 0);
+	signal w_disp_1 : STD_LOGIC_VECTOR(9 downto 0);
+	signal w_disp_2 : STD_LOGIC_VECTOR(9 downto 0);
+	signal w_disp_3 : STD_LOGIC_VECTOR(9 downto 0);
+	-----------------------------------------------------
+	-- BCD DEVICE
+	component display is
+	generic (
+				p_in : INTEGER := 10;
+				p_out : INTEGER := 7
+				);
+	port (
+		i_data  : in STD_LOGIC_VECTOR(p_in-1 downto 0); 
+		o_q  : out STD_LOGIC_VECTOR(p_out-1 downto 0)
+	);
+	end component;
+	-- TOP_LOGIC DEVICE WITH 3 DISPLAY TO COMPLETE 4
+	
+begin
+	
+	UU1 : process(i_clk, i_rst)
+	begin
+		if (i_rst = '0') then
+			w_state <= st_idle;
+			w_disp_0 <= (OTHERS => '0'); 
+			w_cont  <= (OTHERS => '0'); -- zerar vetor inteiro de 28
+		elsif rising_edge(i_clk) then
+			case w_state is
+				when st_idle =>
+					if(i_start = '0') then
+						w_state <= st_run;
+					else
+						w_state <= st_idle;
+					end if;
+				when st_run =>
+					w_cont <= w_cont + 1; -- incrementando
+					if(w_cont = "101111101011111000010000000") then -- cumpriu 1.sec
+						w_disp_0 <= w_disp_0 + 1;
+						--------- CHECKING
+						if(w_disp_0 == "0000001001" and w_disp_1 < "0000000101) then -- 9 segundos
+							w_disp_1 <= w_disp_1 + 1;
+							w_disp_0 <= (OTHERS => '0'); -- RESETANDO NOSSO CONTADOR BASE 10 SEGUNDOS
+						elsif(w_disp_1 == "0000000101" and w_disp_0 == "0000001001") then -- 59 segundos
+							w_disp_2 <= w_disp_2 + 1;
+							w_disp_1 <= (OTHERS => '0'); -- RESETANDO
+						elsif(w_disp_2 == "0000001001") then -- 9 minutos
+							w_disp_3 <= w_disp_3 + 1;
+							w_disp_2 <= (OTHERS => '0'); -- RESETANDO
+						end if;
+						w_cont <= (OTHERS => '0');
+					elsif(i_stop = '0') then
+						w_state <= st_stop;
+					else
+						w_state <= st_run;
+					end if;
+				when st_stop =>
+					if(i_restart ='0') then
+						w_disp_0 <= (OTHERS => '0');
+						w_cont <= (OTHERS => '0');
+						w_state <= st_idle;
+					elsif(i_start = '0') then
+						w_state <= st_run;
+					else
+						w_state <= st_stop;
+					end if;
+				when others =>
+					w_state <= st_idle;
+				end case;
+		end if;
+	end process UU1;
+	--------------
+	-- Component BCD
+	
+	U_BCD: bcd
+		port map (
+			i_data => w_disp_0
+		);
+		
+	U_TOP: top_logic
+	port map(
+		--INPUTS
+		i_disp_1  => w_disp_1, 
+		i_disp_2  => w_disp_2,
+		i_disp_3  => w_disp_3,
+	);
+	
+	
+end behavioral;
