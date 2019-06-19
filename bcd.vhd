@@ -4,19 +4,19 @@ USE IEEE.NUMERIC_STD.ALL;
 USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 USE IEEE.STD_LOGIC_ARITH.ALL;
 
-entity display is
+entity bcd is
 	generic (
 				p_in : INTEGER := 8;
 				p_out : INTEGER := 7
 				);
-	pORT(
+	port(
 		i_data  : in STD_LOGIC_VECTOR(p_in-1 downto 0); 
 		o_q  : out STD_LOGIC_VECTOR(p_out-1 downto 0)
 	);
 	
-	end display;
+end bcd;
 	
-ARCHITECTURE behavioral OF display IS 
+architecture behavioral OF bcd is
 	begin
 		process(i_data)
 		begin

@@ -53,9 +53,11 @@ begin
 				when st_check_repo =>
 					if(w_res_1 = "0000" or w_res_2 = "0000" or w_res_3 = "0000" or w_res_4 = "0000" ) then
 						--#ENVIA SINAL DE LIGAR LED REPosicao
+						o_led_repo <= "1";
 						--#MAQUINA ENTRA EM LOOP NESSE ESTADO ATE REPOSICAO
 					else 
 						w_res_stats <= "0";
+						o_led_repo <= "0";
 						w_state <= st_check_temp;
 					end if;
 				when st_check_temp =>

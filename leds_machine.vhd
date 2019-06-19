@@ -36,7 +36,19 @@ end leds_machine;
 architecture behavioral of leds_machine is
 	-- Internal signals
 	----------------------------------------------------
-type w_state_type is (st_idle, st_check_repo, st_check_type, st_check_size, st_check_sugar, st_check_valv );
+	type w_state_type is (
+			st_idle, 
+			st_led_type_1, 
+			st_led_type_2, 
+			st_led_type_3, 
+			st_led_prepare, 
+			st_led_repo,
+			st_led_res_agua,
+			st_led_size,
+			st_led_sugar,
+			st_led_temp,
+			st_timer
+		);
 	attribute syn_encoding : string;
 	attribute syn_encoding of w_state_type : type is "safe";
 	
