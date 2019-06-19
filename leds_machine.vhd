@@ -8,6 +8,7 @@ entity leds_machine is
 		p_disp : INTEGER := 8
 	);
 	Port(
+		--- INPUTS
 		i_clk : in STD_LOGIC;
 		i_rst : in STD_LOGIC;
 		i_type_1 : in STD_LOGIC;
@@ -17,7 +18,18 @@ entity leds_machine is
 		i_sugar : in STD_LOGIC;
 		i_prepare : in STD_LOGIC;
 		i_temp : in STD_LOGIC;
-		--#AINDA PRECISO ESCREVER AQQUI
+		--- OUTPUTS
+		o_led_type_1 : out STD_LOGIC;
+		o_led_type_2 : out STD_LOGIC;
+		o_led_type_3 : out STD_LOGIC;
+		o_led_sugar : out STD_LOGIC;
+		o_led_size : out STD_LOGIC;
+		o_led_prepare : out STD_LOGIC;
+		o_led_repo : out STD_LOGIC;
+		o_led_temp : out STD_LOGIC;
+		o_led_res_agua : out STD_LOGIC;
+		o_led_done : out STD_LOGIC;
+		
 	);
 end leds_machine;
 
@@ -30,11 +42,8 @@ type w_state_type is (st_idle, st_check_repo, st_check_type, st_check_size, st_c
 	
 	signal w_state : w_state_type;
 	--# Sinais internos para os contadores de quantidade em binario;
-	signal w_res_1 : STD_LOGIC_VECTOR(3 downto 0); --#Reservatorio de cafe
-	signal w_res_2 : STD_LOGIC_VECTOR(3 downto 0); --#Reservatorio de leite
-	signal w_res_3 : STD_LOGIC_VECTOR(3 downto 0); --#Reservatorio de chocolate
-	signal w_res_4 : STD_LOGIC_VECTOR(3 downto 0); --#Reservatorio de sugar
-	signal w_res_stats : STD_LOGIC; -- (0) = estado ok | (1) = precisa de reposicao
+	signal w_timer_count : STD_LOGIC_VECTOR(30 downto 0); --#TIMER COUNT
+	signal w_timer_total : STD_LOGIC_VECTOR(4 downto 0);
 	-----------------------------------------------------
 	
 begin
@@ -45,71 +54,133 @@ begin
 			w_state <= st_idle;
 		elsif rising_edge(i_clk) then
 			case w_state is
+				--# INICIO ESTADO IDLE
 				when st_idle =>
-					--# Checando estado dos leds tipo
+					--############### LED TIPO 1
 					if(i_data(0) == "1") then
-						w_state <= st_led_type;
-					end if;
-					if(i_data(7) == "1") then
-						
-					end if;
-				when st_led_type =>
-					if(i_data(0) == "1") then
-						o_led_type_1 <= "1";
-					else if(i_data(1) == "1") then
-						o_led_type_2 <= "1";
-					else if(i_data(2) == "1") then
-						o_led_type_3 <= "1";
-					end if;
-					w_state <= st_led_size;
-				when st_led_size =>
-					if(i_data(3) == "1") then
-						o_led_size <= "1";
+						w_state <= st_led_type_1;
+						w_timer_total <= w_timer_total + 1;
 					else
+						o_led_type_1 <= "0";
+					end if;
+					--##################################
+					--############### LED TIPO 2
+					if(i_data(1) == "1") then
+						w_state <= st_led_type_2;
+						w_timer_total <= w_timer_total + 2;
+					else
+						o_led_type_2 <= "0";
+					end if;
+					--##################################
+					--############### LED TIPO 3
+					if(i_data(2) == "1") then
+						w_state <= st_led_type_3;
+						w_timer_total <= w_timer_total + 3;
+					else
+						o_led_type_3 <= "0";
+					end if;
+					--##################################
+					--############### LED SIZE
+					if(i_data(3) == "1") then
+						w_state <= st_led_size;
+						w_timer_total <= w_timer_total + 10;
+					else
+						w_timer_total <= w_timer_total + 5;
 						o_led_size <= "0";
 					end if;
-					w_state <= st_led_sugar;
-				when st_led_sugar =>
+					--##################################
+					--############### LED REPO
 					if(i_data(4) == "1") then
-						o_led_sugar <= "1";
+						w_state <= st_led_repo;
 					else
-						o_led_sugar <= "0";
+						o_led_repo <= "0";
 					end if;
-					w_state <= st_led_prepare;
-				when st_led_prepare =>
+					--##################################
+					--############### LED PREPARE
 					if(i_data(5) == "1") then
-						o_led_prepare <= "1";
+						w_state <= st_led_prepare;
 					else
 						o_led_prepare <= "0";
 					end if;
-					w_state <= st_led_done;
-				when st_led_done =>
+					--##################################
+					--############### LED TEMP
 					if(i_data(6) == "1") then
+						w_state <= st_led_temp;
+					else
+						o_led_temp <= "0";
+					end if;
+					--##################################
+					--############### LED RES_AGUA
+					if(i_data(7) == "1") then
+						w_state <= st_led_res_agua;
+					else
+						o_led_res_agua <= "0";
+					end if;
+					--##################################
+					--############### LED SUGAR
+					if(i_data(8) == "1") then
+						w_state <= st_led_sugar;
+						w_timer_total <= w_timer_total + 1;
+					else
+						o_led_sugar <= "0";
+					end if;
+					--##################################
+					--############### ESTADO TIMER
+					if(i_data(9) == "1") then -- TIMER ATIVADO
+						w_state <= st_led_type_1;
+					else
+						--DESLIGA O LED
+					end if;
+					--##################################
+				--# FIM ESTADO IDLE
+				--# INICIO ESTADO LED TYPE 1
+				when st_led_type_1 =>
+					o_led_type_1 <= "1";
+					w_state <= st_idle;
+				--# FIM ESTADO LED TYPE 1
+				--# INICIO ESTADO LED TYPE 2
+				when st_led_type_2 =>
+					o_led_type_2 <= "1";
+					w_state <= st_idle;
+				--# FIM ESTADO LED TYPE 2
+				--# INICIO ESTADO LED TYPE 3
+				when st_led_type_3 =>
+					o_led_type_3 <= "1";
+					w_state <= st_idle;
+				--# FIM ESTADO LED TYPE 3
+				--# INICIO ESTADO LED SIZE
+				when st_led_size =>
+					o_led_size <= "1";
+					w_state <= st_idle;
+				--# FIM ESTADO LED SIZE
+				--# INICIO ESTADO LED REPO
+				when st_led_repo =>
+					o_led_repo <= "1";
+					w_state <= st_idle;
+				--# FIM ESTADO LED REPO
+				--# INICIO ESTADO LED PREPARE
+				when st_led_prepare =>
+					o_led_prepare <= "1";
+					w_state <= st_timer;
+				--# FIM ESTADO LED PREPARE
+				--# INICIO ESTADO LED RES_AGUA
+				when st_led_res_agua =>
+					o_led_res_agua <= "1";
+					w_state <= st_idle;
+				--# FIM ESTADO LED RES_AGUA
+				--# INICIO ESTADO TIMER
+				when st_timer =>
+					if(conv_integer(w_timer_count) = conv_integer(w_timer_total)) then -- TIMER COMPLETOU X SEGUNDS
 						o_led_done <= "1";
 					else
-						o_led_done <= "0";
+						w_timer_count <= w_timer_count + 1;
 					end if;
+					o_led_type_1 <= "1";
 					w_state <= st_idle;
+				--# FIM ESTADO TIMER
 				when others =>
 					w_state <= st_idle;
 				end case;
 		end if;
-	end process UU1;
-	--------------
-	-- Component BCD
-	
-	U_BCD: bcd
-		port map (
-			i_data => w_disp_0
-		);
-		
-	U_TOP: top_logic
-	port map(
-		--INPUTS
-		i_disp_1  => w_disp_1, 
-		i_disp_2  => w_disp_2,
-		i_disp_3  => w_disp_3,
-	);
-	
-	
+	end process UU1;	
 end behavioral;
