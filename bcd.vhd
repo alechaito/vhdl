@@ -5,36 +5,58 @@ USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 USE IEEE.STD_LOGIC_ARITH.ALL;
 
 entity bcd is
-	generic (
-				p_in : INTEGER := 2;
-				p_out : INTEGER := 7
-				);
-	port(
-		i_data  : in STD_LOGIC;
-		o_q  : out STD_LOGIC_VECTOR(p_out-1 downto 0)
+	
+	generic(
+		t_in : integer := 8
 	);
 	
-end bcd;
+	port(
+		i_data    : in STD_LOGIC_VECTOR (t_in -1 downto 0);
+		o_q    : out STD_LOGIC_VECTOR (t_in -1 downto 0)
+		);
+
+	end bcd;
 	
-architecture behavioral OF bcd is
+architecture behavioral of bcd is
+	
+	Begin
+	process (i_data)
 	begin
-		process(i_data, i_type)
-		begin
-			case i_data is
-				--G1: for n in 5 downto 1 GENERATE
-				--end generate G1;
-					WHEN "00000000" => o_q <= "1111110"; -- 0
-					WHEN "00000001" => o_q <= "0110000";  -- 1
-					WHEN "00000010" => o_q <= "1101101"; -- 2
-					WHEN "00000011" => o_q <= "1111001"; -- 3
-					WHEN "00000100" => o_q <= "0110011"; -- 4
-					WHEN "00000101" => o_q <= "1011011"; -- 5
-					WHEN "00000110" => o_q <= "0011111"; -- 6
-					WHEN "00000111" => o_q <= "1110000"; -- 7
-					WHEN "00001000" => o_q <= "1111111"; -- 8
-					WHEN "00001001" => o_q <= "1110011"; -- 9
-					WHEN "00001101" => o_q <= "0111101"; -- d
-					WHEN OTHERS => o_q <= "1111111"; -- desligado
-			end case;
-		end process;
+	 
+		if (i_data = "00000000") then      --0
+			--o_q <= "11111100";
+			o_q <= "00000011";
+		elsif (i_data = "00000001") then   --1
+			--o_q <= "01100000";
+			o_q <= "10011111";
+		elsif (i_data = "00000010") then  --2
+			--o_q <= "11011010";
+			o_q <= "00100101";
+		elsif (i_data = "00000011") then  --3 
+			--o_q <= "11110010";
+			o_q <= "00001101";
+		elsif (i_data = "00000100") then  --4 
+			--o_q <= "01100110";
+			o_q <= "10011001";
+		elsif (i_data = "00000101") then  --5 
+			--o_q <= "10110110";
+			o_q <= "01001001";
+		elsif (i_data =  "00000110") then --6
+			--o_q <= "10111110";
+			o_q <= "01000001";
+		elsif (i_data = "00000111") then --7
+			--o_q <= "11100000";			
+			o_q <= "00011111";			
+		elsif (i_data = "00001000") then --8
+			--o_q <= "11111110";
+			o_q <= "00000001";		
+		elsif (i_data = "00001001") then --9
+			--o_q <= "11110110";
+			o_q <= "00001001";
+		else
+			--o_q <= "11111110";
+			o_q <= "00000011";
+				
+		end if;
+	end process;
 end behavioral;
