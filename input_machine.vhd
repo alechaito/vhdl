@@ -18,6 +18,8 @@ entity input_machine is
 		i_prepare : in STD_LOGIC;
 		i_temp : in STD_LOGIC;
 		--#AINDA PRECISO ESCREVER AQQUI
+		o_data : out STD_LOGIC_VECTOR(9 downto 0);
+		o_wr : out STD_LOGIC;
 	);
 end input_machine;
 
@@ -38,6 +40,10 @@ type w_state_type is (st_idle, st_check_repo, st_check_type, st_check_size, st_c
 	-----------------------------------------------------
 	
 begin
+	--------------------------
+	-- O_DATA = [t1, t2, t3, size, sugar, repo]
+	--	O_DATA =	[0, 1, 2, 3, 4, 5]
+	---------------------------
 	
 	UU1 : process(i_clk, i_rst)
 	begin
@@ -53,7 +59,8 @@ begin
 				when st_check_repo =>
 					if(w_res_1 = "0000" or w_res_2 = "0000" or w_res_3 = "0000" or w_res_4 = "0000" ) then
 						--#ENVIA SINAL DE LIGAR LED REPosicao
-						o_led_repo <= "1";
+						o_data(5) <= "1";
+						o_wr <= "1";
 						--#MAQUINA ENTRA EM LOOP NESSE ESTADO ATE REPOSICAO
 					else 
 						w_res_stats <= "0";
