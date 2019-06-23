@@ -1,5 +1,5 @@
-Analysis & Synthesis report for test_led_machine
-Sat Jun 22 15:53:40 2019
+Analysis & Synthesis report for test_input
+Sun Jun 23 16:05:36 2019
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -36,10 +36,10 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Sat Jun 22 15:53:40 2019          ;
+; Analysis & Synthesis Status        ; Failed - Sun Jun 23 16:05:36 2019          ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
-; Revision Name                      ; test_led_machine                           ;
-; Top-level Entity Name              ; test_led                                   ;
+; Revision Name                      ; test_input                                 ;
+; Top-level Entity Name              ; test_input                                 ;
 ; Family                             ; Cyclone III                                ;
 ; Total logic elements               ; N/A until Partition Merge                  ;
 ;     Total combinational functions  ; N/A until Partition Merge                  ;
@@ -59,7 +59,7 @@ applicable agreement for further details.
 ; Option                                                                     ; Setting            ; Default Value      ;
 +----------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                     ; EP3C16F484C6       ;                    ;
-; Top-level entity name                                                      ; test_led           ; test_led_machine   ;
+; Top-level entity name                                                      ; test_input         ; test_input         ;
 ; Family name                                                                ; Cyclone III        ; Cyclone IV GX      ;
 ; Use smart compilation                                                      ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
@@ -157,27 +157,32 @@ Parallel compilation was disabled, but you have multiple processors available. E
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Sat Jun 22 15:53:38 2019
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off test_led_machine -c test_led_machine
+    Info: Processing started: Sun Jun 23 16:05:34 2019
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off test_input -c test_input
 Warning (20028): Parallel compilation is not licensed and has been disabled
-Info (12021): Found 2 design units, including 1 entities, in source file test_led.vhd
-    Info (12022): Found design unit 1: test_led-behavioral
-    Info (12023): Found entity 1: test_led
-Info (12021): Found 2 design units, including 1 entities, in source file leds_machine.vhd
-    Info (12022): Found design unit 1: leds_machine-behavioral
-    Info (12023): Found entity 1: leds_machine
-Info (12127): Elaborating entity "test_led" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at test_led.vhd(18): used implicit default value for signal "w_i_data" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at test_led.vhd(19): used implicit default value for signal "w_i_read" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at test_led.vhd(21): used implicit default value for signal "w_i_data_timer" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at test_led.vhd(24): object "w_o_data" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at test_led.vhd(25): object "w_o_timer" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at test_led.vhd(26): object "w_o_read" assigned a value but never read
-Error (10533): VHDL Wait Statement error at test_led.vhd(69): Wait Statement must contain condition clause with UNTIL keyword File: C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd Line: 69
+Info (12021): Found 2 design units, including 1 entities, in source file input_machine.vhd
+    Info (12022): Found design unit 1: input_machine-behavioral
+    Info (12023): Found entity 1: input_machine
+Info (12021): Found 2 design units, including 1 entities, in source file test_input.vhd
+    Info (12022): Found design unit 1: test_input-behavioral
+    Info (12023): Found entity 1: test_input
+Info (12127): Elaborating entity "test_input" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at test_input.vhd(18): used implicit default value for signal "w_type2" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at test_input.vhd(19): used implicit default value for signal "w_type3" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at test_input.vhd(21): used implicit default value for signal "w_size" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at test_input.vhd(22): used implicit default value for signal "w_sugar" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at test_input.vhd(24): used implicit default value for signal "w_prepare" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at test_input.vhd(28): object "w_data" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at test_input.vhd(29): object "w_read" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at test_input.vhd(31): object "w_res1" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at test_input.vhd(32): object "w_res2" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at test_input.vhd(33): object "w_res3" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at test_input.vhd(34): object "w_res4" assigned a value but never read
+Error (10533): VHDL Wait Statement error at test_input.vhd(92): Wait Statement must contain condition clause with UNTIL keyword File: C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd Line: 92
 Error (12153): Can't elaborate top-level user hierarchy
-Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 2 errors, 7 warnings
+Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 2 errors, 12 warnings
     Error: Peak virtual memory: 4680 megabytes
-    Error: Processing ended: Sat Jun 22 15:53:40 2019
+    Error: Processing ended: Sun Jun 23 16:05:36 2019
     Error: Elapsed time: 00:00:02
     Error: Total CPU time (on all processors): 00:00:02
 
