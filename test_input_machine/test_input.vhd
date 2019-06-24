@@ -105,7 +105,8 @@ begin
 	process begin 
 		w_temp <= '0';
 		wait for 70 NS;
-		w_type1 <= '1';
+		w_type3 <= '1';
+		w_sugar <= '1';
 		--w_i_data_timer <= "00000001";
 	end process;
 	
