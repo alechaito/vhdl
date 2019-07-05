@@ -1,0 +1,21 @@
+C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd
+Model Technology ModelSim SE-64 vcom 10.5 Compiler 2016.02 Feb 13 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity test_input
+-- Compiling architecture behavioral of test_input
+
+} {} {}} C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/input_machine.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/input_machine.vhd
+Model Technology ModelSim SE-64 vcom 10.5 Compiler 2016.02 Feb 13 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity input_machine
+-- Compiling architecture behavioral of input_machine
+
+} {} {}}

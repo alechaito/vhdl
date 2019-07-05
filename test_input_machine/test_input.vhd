@@ -13,8 +13,8 @@ architecture behavioral of test_input is
 
 	signal w_clk 		: STD_LOGIC;
 	signal w_rst 		: STD_LOGIC;
-			
-	signal w_type1 	: STD_LOGIC;
+	
+	signal w_type1 	: STD_LOGIC;	
 	signal w_type2 	: STD_LOGIC;
 	signal w_type3 	: STD_LOGIC;
 			
@@ -23,7 +23,7 @@ architecture behavioral of test_input is
 			
 	signal w_prepare 	: STD_LOGIC;
 	signal w_temp 		: STD_LOGIC;
-			
+	signal w_done 		: STD_LOGIC;		
 	--#OUTPUTS
 	signal w_data 		: STD_LOGIC_VECTOR(t_data-1 downto 0);
 	signal w_read 		: STD_LOGIC;
@@ -47,7 +47,7 @@ architecture behavioral of test_input is
 			
 			i_prepare 	: in STD_LOGIC;
 			i_temp 		: in STD_LOGIC;
-			
+			i_done		: in STD_LOGIC;
 			--#OUTPUTS
 			o_data 		: out STD_LOGIC_VECTOR(t_data-1 downto 0);
 			o_read 		: out STD_LOGIC;
@@ -75,7 +75,7 @@ begin
 			
 			i_prepare 	=> w_prepare,
 			i_temp 		=> w_temp,
-			
+			i_done		=> w_done,
 			--#OUTPUTS
 			o_data 		=> w_data,
 			o_read		=> w_read,
@@ -104,10 +104,19 @@ begin
 	
 	process begin 
 		w_temp <= '0';
-		wait for 70 NS;
+		--w_done <= '1';
+		wait for 20 NS;
 		w_type3 <= '1';
+		w_done <= '1';
+		wait for 20 NS;
 		w_sugar <= '1';
-		--w_i_data_timer <= "00000001";
+		wait for 20 NS;
+		w_size <= '1';
+		wait for 20 NS;
+		w_prepare <= '1';
+		wait for 100 NS;
+		w_done <= '0';
+		wait;
 	end process;
 	
 	
