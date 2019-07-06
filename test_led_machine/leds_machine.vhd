@@ -13,13 +13,17 @@ entity leds_machine is
 		i_clk 			: in STD_LOGIC;
 		i_rst 			: in STD_LOGIC;
 		i_data 			: in STD_LOGIC_VECTOR(t_data-1 downto 0);
-		i_data_timer  	: in STD_LOGIC_VECTOR(t_timer-1 downto 0);
-		i_read_timer 	: in STD_LOGIC;
 		i_read 			: in STD_LOGIC;
 		--- OUTPUTS
-		o_data 			: out STD_LOGIC_VECTOR(t_data-1 downto 0);
-		o_timer			: out STD_LOGIC_VECTOR(3 downto 0);
-		o_read 			: out STD_LOGIC
+		o_type_1 		: out STD_LOGIC;
+		o_type_2 		: out STD_LOGIC;
+		o_type_3 		: out STD_LOGIC;
+		o_size 			: out STD_LOGIC;
+		o_sugar	 		: out STD_LOGIC;
+		o_temp	 		: out STD_LOGIC;
+		o_repo			: out STD_LOGIC;
+		o_prepare		: out STD_LOGIC;
+		o_done			: out STD_LOGIC
 	);
 	
 end leds_machine;
@@ -35,6 +39,7 @@ architecture behavioral of leds_machine is
 	--# Sinais internos para os contadores de quantidade em binario;
 	signal w_timer_to_count : STD_LOGIC_VECTOR(t_timer-1 downto 0); --#TIMER COUNT
 	signal w_timer : STD_LOGIC_VECTOR(t_timer-1 downto 0);
+	signal w_test	: STD_LOGIC;
 	signal w_timer_seg : STD_LOGIC_VECTOR(3 downto 0); -- POSICOES NECESSARIAS PRA CONTA NO MAXIMO 16 SEG
 	-----------------------------------------------------
 begin
@@ -42,26 +47,72 @@ begin
 	UU1 : process(i_clk, i_rst)
 	begin
 		if (i_rst = '0') then
-			w_state <= st_idle;
 			w_timer <= (others => '0');
 			w_timer_seg <= (others => '0');
 			w_timer_to_count <= (others => '0');
+			w_test <= '1';
+			w_state <= st_idle;
 		elsif rising_edge(i_clk) then
 			case w_state is
 				--# INICIO ESTADO IDLE
 				when st_idle =>
+					o_type_1 <= '1';
 					if(i_read = '1') then
 						w_state <= st_led_start;
-					elsif(i_read_timer = '1') then
-						--w_timer_to_count <= i_data_timer;
-						w_state <= st_timer;
+					--elsif(i_read_timer = '1') then
+					--w_timer_to_count <= i_data_timer;
+					--w_state <= st_timer;
 					end if;
+				--O_DATA = [t1, t2, t3, size, sugar, repo, temp, prepare]
 				when st_led_start =>
 					if(i_data(0) = '1') then
-						o_data <= "11001111";
-					elsif(i_data(1) = '1') then
-						o_data <= "00000110";
+						o_type_1 <= '1';
+					else
+						o_type_1 <= '0';
 					end if;
+					--------------------------------
+					if(i_data(1) = '1') then
+						o_type_2 <= '1';
+					else
+						o_type_2 <= '0';
+					end if;
+					--------------------------------
+					if(i_data(2) = '1') then
+						o_type_3 <= '1';
+					else
+						o_type_3 <= '0';
+					end if;
+					--------------------------------
+					if(i_data(3) = '1') then
+						o_size <= '1';
+					else
+						o_size <= '0';
+					end if;
+					--------------------------------
+					if(i_data(4) = '1') then
+						o_sugar <= '1';
+					else
+						o_sugar <= '0';
+					end if;
+					--------------------------------
+					if(i_data(5) = '1') then
+						o_repo <= '1';
+					else
+						o_repo <= '0';
+					end if;
+					--------------------------------
+					if(i_data(6) = '1') then
+						o_temp <= '1';
+					else
+						o_temp <= '0';
+					end if;
+					--------------------------------
+					if(i_data(7) = '1') then
+						o_prepare <= '1';
+					else
+						o_prepare <= '0';
+					end if;
+					--------------------------------
 					w_state <= st_idle;
 				--# FIM ESTADO LED TYPE 1
 				--# INICIO ESTADO LED TYPE 2
@@ -69,13 +120,13 @@ begin
 					if(w_timer = "101111101011111000010000000") then
 						w_timer_seg <= w_timer_seg + 1;
 						w_timer <= (others => '0');
-						o_data  <= "00000010";
+						--o_data  <= "00000010";
 					elsif(w_timer_seg = "0100") then -- TIMER COMPLETOU 4 SEGUNDS
-						o_data  <= "00001110";
+						--o_data  <= "00001110";
 						w_state <= st_idle;
 					else
 						w_timer <= w_timer + 1;
-						o_data  <= "00000001";
+						--o_data  <= "00000001";
 						--o_timer <= "00000" & w_timer;
 					end if;
 				--# FIM ESTADO TIMER
@@ -86,6 +137,6 @@ begin
 	end process UU1;
 	
 	--#Enviando sinal pro test_bench
-	o_timer  <= w_timer_seg;
-	
+	--o_timer  <= w_timer_seg;
+	o_type_1 <= w_test;
 end behavioral;

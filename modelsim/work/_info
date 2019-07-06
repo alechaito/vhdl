@@ -17,6 +17,7 @@ Z1 o-quiet -auto_acc_if_foreign -work work
 Z2 tCvgOpt 0
 n@_opt
 Z3 OL;O;10.5;63
+R0
 T_opt1
 !s110 1562344571
 V1P@b:=RgoXDcUaQ=]?Id70
@@ -27,6 +28,15 @@ R2
 n@_opt1
 R3
 R0
+T_opt2
+!s110 1562429220
+VGjT1=ezflc_MEZ>b=SPeE2
+04 8 10 work test_led behavioral 1
+=1-b06ebf66d732-5d20c724-218-34b4
+R1
+R2
+n@_opt2
+R3
 Einput_machine
 Z4 w1562352813
 Z5 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
@@ -70,26 +80,69 @@ R16
 !i113 0
 R17
 R18
-Etest_input
-Z19 w1562353577
+Eleds_machine
+Z19 w1562428989
 R5
 R6
 R7
 R8
 R9
-Z20 8C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd
-Z21 FC:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd
+Z20 8C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd
+Z21 FC:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd
+l0
+L6
+VzI[<XllR1[cAZQ]RPoh:P0
+!s100 ]XIJ@Ia`25Te?aTjKbJMA2
+R12
+32
+Z22 !s110 1562429122
+!i10b 1
+Z23 !s108 1562429122.000000
+Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd|
+Z25 !s107 C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd|
+!i113 0
+R17
+R18
+Abehavioral
+R5
+R6
+R7
+R8
+DEx4 work 12 leds_machine 0 22 zI[<XllR1[cAZQ]RPoh:P0
+l45
+L31
+V_=bF<[YjleS89lG193CAE2
+!s100 LG^nCCWi?Gbk>V7=fZ[?K2
+R12
+32
+R22
+!i10b 1
+R23
+R24
+R25
+!i113 0
+R17
+R18
+Etest_input
+Z26 w1562353577
+R5
+R6
+R7
+R8
+R9
+Z27 8C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd
+Z28 FC:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd
 l0
 L6
 V^AoQ3PE:MUEh>PBNf:MoS0
 !s100 2hi]4JFjLH]IJi3``Em0U2
 R12
 32
-Z22 !s110 1562353586
+Z29 !s110 1562353586
 !i10b 1
-Z23 !s108 1562353586.000000
-Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd|
-Z25 !s107 C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd|
+Z30 !s108 1562353586.000000
+Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd|
+Z32 !s107 C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd|
 !i113 0
 R17
 R18
@@ -105,11 +158,54 @@ V1ORkhgn4Y;fGZ`g[_NdVW3
 !s100 `Bo45Z8G`D^L^Ej0YeQYZ2
 R12
 32
-R22
+R29
 !i10b 1
-R23
-R24
-R25
+R30
+R31
+R32
+!i113 0
+R17
+R18
+Etest_led
+Z33 w1562429197
+R5
+R6
+R7
+R8
+R9
+Z34 8C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd
+Z35 FC:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd
+l0
+L6
+VW0WebHkBf0MSmfLCYZEYT3
+!s100 D039onan1DlJOEE;8c;Wj0
+R12
+32
+Z36 !s110 1562429211
+!i10b 1
+Z37 !s108 1562429211.000000
+Z38 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd|
+Z39 !s107 C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd|
+!i113 0
+R17
+R18
+Abehavioral
+R5
+R6
+R7
+R8
+DEx4 work 8 test_led 0 22 W0WebHkBf0MSmfLCYZEYT3
+l53
+L13
+VWTHdO7lLkKNJz6A;?PbIV3
+!s100 WfogkilEOHZglR;Nb?dI_3
+R12
+32
+R36
+!i10b 1
+R37
+R38
+R39
 !i113 0
 R17
 R18
