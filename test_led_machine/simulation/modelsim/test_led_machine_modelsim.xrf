@@ -1,0 +1,10 @@
+vendor_name = ModelSim
+source_file = 1, C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd
+source_file = 1, C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd
+source_file = 1, C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/db/test_led_machine.cbx.xml
+source_file = 1, c:/altera/web/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, c:/altera/web/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, c:/altera/web/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, c:/altera/web/quartus/libraries/vhdl/ieee/timing_p.vhd
+design_name = test_led
+instance = comp, \i_clk~input\, i_clk~input, test_led, 1

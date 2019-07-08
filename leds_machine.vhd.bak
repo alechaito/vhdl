@@ -5,158 +5,158 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity leds_machine is
 	generic (
-		p_disp : INTEGER := 8
+		t_data 	: INTEGER := 8;
+		t_timer 	: INTEGER := 27
 	);
-	Port(
-		i_clk : in STD_LOGIC;
-		i_rst : in STD_LOGIC;
-		i_type_1 : in STD_LOGIC;
-		i_type_2 : in STD_LOGIC;
-		i_type_3 : in STD_LOGIC;
-		i_size : in STD_LOGIC;
-		i_sugar : in STD_LOGIC;
-		i_prepare : in STD_LOGIC;
-		i_temp : in STD_LOGIC;
-		--#AINDA PRECISO ESCREVER AQQUI
+	port(
+		--- INPUTS
+		i_clk 			: in STD_LOGIC;
+		i_rst 			: in STD_LOGIC;
+		i_data 			: in STD_LOGIC_VECTOR(t_data-1 downto 0);
+		i_read 			: in STD_LOGIC;
+		--- OUTPUTS
+		o_type_1 		: out STD_LOGIC;
+		o_type_2 		: out STD_LOGIC;
+		o_type_3 		: out STD_LOGIC;
+		o_size 			: out STD_LOGIC;
+		o_sugar	 		: out STD_LOGIC;
+		o_temp	 		: out STD_LOGIC;
+		o_repo			: out STD_LOGIC;
+		o_prepare		: out STD_LOGIC;
+		o_done			: out STD_LOGIC
 	);
+	
 end leds_machine;
 
-architecture behavioral of input_machine is
+architecture behavioral of leds_machine is
 	-- Internal signals
-	----------------------------------------------------
-type w_state_type is (st_idle, st_check_repo, st_check_type, st_check_size, st_check_sugar, st_check_valv );
+	type w_state_type is ( st_idle, st_led_start, st_timer, st_t_done);
 	attribute syn_encoding : string;
 	attribute syn_encoding of w_state_type : type is "safe";
-	
 	signal w_state : w_state_type;
-	--# Sinais internos para os contadores de quantidade em binario;
-	signal w_res_1 : STD_LOGIC_VECTOR(3 downto 0); --#Reservatorio de cafe
-	signal w_res_2 : STD_LOGIC_VECTOR(3 downto 0); --#Reservatorio de leite
-	signal w_res_3 : STD_LOGIC_VECTOR(3 downto 0); --#Reservatorio de chocolate
-	signal w_res_4 : STD_LOGIC_VECTOR(3 downto 0); --#Reservatorio de sugar
-	signal w_res_stats : STD_LOGIC; -- (0) = estado ok | (1) = precisa de reposicao
-	-----------------------------------------------------
 	
+	-- Sinais internos para os contadores de quantidade em binario
+	signal w_timer 		: STD_LOGIC_VECTOR(t_timer-1 downto 0);
+	signal w_t_seg 		: STD_LOGIC_VECTOR(3 downto 0); -- POSICOES NECESSARIAS PRA CONTA NO MAXIMO 16 SEG
+	signal w_t_ms			: STD_LOGIC_VECTOR(3 downto 0);
 begin
 	
 	UU1 : process(i_clk, i_rst)
+		variable v_count : STD_LOGIC_VECTOR(3 downto 0);
+		variable v_checked : INTEGER;
 	begin
 		if (i_rst = '0') then
+			w_timer <= (others => '0');
+			w_t_seg <= (others => '0');
 			w_state <= st_idle;
-			w_res_1 <= "1010"; --#Inicialisando reservatorios com 10
-			w_res_2 <= "1010"; --#Inicialisando reservatorios com 10
-			w_res_3 <= "1010"; --#Inicialisando reservatorios com 10
-			w_res_4 <= "1010"; --#Inicialisando reservatorios com 10
-			w_res_stats <= "1"; -- Ja inicia a maquina de estados indo para o estado de reposicao
 		elsif rising_edge(i_clk) then
 			case w_state is
-				when st_check_repo =>
-					if(w_res_1 = "0000" or w_res_2 = "0000" or w_res_3 = "0000" or w_res_4 = "0000" ) then
-						--#ENVIA SINAL DE LIGAR LED REPosicao
-						--#MAQUINA ENTRA EM LOOP NESSE ESTADO ATE REPOSICAO
-					else 
-						w_res_stats <= "0";
-						w_state <= st_check_temp;
-					end if;
-				when st_check_temp =>
-					if(i_temp = "0") then
-						--#ISSO VAI PROPORCIONAR UM LOOP
-						--#ENVIA SINAL LIGAR LED DE TEMPERATURA BAIXA, ISSO NA PLACA
-						--#LIGA O RESISTOR
-					else
-						w_state <= st_idle;
-					end if;
+				--# INICIO ESTADO IDLE
 				when st_idle =>
-					if(w_res_stats == "1") then
-						w_state <= st_check_repo;
+					if(i_read = '1' and v_count = "0000") then
+						w_state <= st_led_start;
+					elsif(i_data(7) = '1' and v_count >= "0000") then
+						w_state <= st_timer;
 					end if;
-					if(i_type_1 = "1" or i_type_2 = "1" or i_type_2 = "1") then
-						w_state <= st_check_type; --# REDIRECIONA PRO ESTADO DE CHECAR O TIPO
+				--O_DATA = [t1, t2, t3, size, sugar, repo, temp, prepare]
+				when st_led_start =>
+					v_count := "0000";
+					if(i_data(0) = '1') then
+						v_count := v_count + 1;
+						o_type_1 <= '1';
+					else
+						o_type_1 <= '0';
 					end if;
-				when st_check_type =>
-					--# ing1 = cafe / ing2 = leite / ing3 = chocolate / ing4 = sugar
-					--#vec = [ing1, ing2, ing3, ing4]
-					if(i_type_1 == "1") then --#TIPO CAFE PURO
-						--# ENVIA SINAL PARA LIGAR LED TIPO CAFE PURO
-					else if(i_type_2 == "1") then --#TIPO CAFE C/ LEITE
-						--# ENVIA SINAL PARA LIGAR LED TIPO CAFE C/ LEITE
-					else if(i_type_3 == "1") then --#TIPO MOCHACINO
-						--# ENVIA SINAL PARA LIGAR LED TIPO MOCHACINO
+					--------------------------------
+					if(i_data(1) = '1') then
+						v_count := v_count + 2;
+						o_type_2 <= '1';
+					else
+						o_type_2 <= '0';
 					end if;
-					--##############
-					w_state <= st_check_size; --# PROX ESTADO 
-				when st_check_size =>
-					if(i_size = "1") then --#TAMANHO GRANDE
-						--# ENVIA SINAL PARA LIGAR LED TAMANHO
+					--------------------------------
+					if(i_data(2) = '1') then
+						v_count := v_count + 3;
+						o_type_3 <= '1';
+					else
+						o_type_3 <= '0';
 					end if;
-					w_state <= st_check_sugar;
-				when st_check_sugar =>
-					if(i_sugar = "1") then
-						--# ENVIA SINAL PARA LIGAR LED SUGAR
+					--------------------------------
+					if(i_data(3) = '1') then
+						v_count := v_count + 10;
+						o_size <= '1';
+					else
+						v_count := v_count + 5;
+						o_size <= '0';
 					end if;
-				when st_check_valv =>
-					--# W_TIMER = [0000] -- CONTA ATE 15 NO MAXIMO
-					if(i_type_1 == "1") then --#TIPO CAFE PURO
-						--# LIBERA PO DE CAFE
-						w_res_1 <= w_res_1 - 1;
-						w_timer <= w_timer + 1;  -- 1 SEGUNDOS TOTAL
-					else if(i_type_2 == "1") then --#TIPO CAFE C/ LEITE
-						--# LIBERA PO DE CAFE
-						w_res_1 <= w_res_1 - 1;
-						--# LIBERA LEITE
-						w_res_2 <= w_res_2 - 1;
-						w_timer <= w_timer + 2; ; -- 2 SEGUNDOS TOTAL
-					else if(i_type_3 == "1") then --#TIPO MOCHACINO
-						--# LIBERA PO DE CAFE
-						w_res_1 <= w_res_1 - 1;
-						--#ENVIA SINAL PRO TIMER DE 1 SEGUNDO
-						--# LIBERA LEITE
-						w_res_2 <= w_res_2 - 1;
-						--#ENVIA SINAL PRO TIMER DE 1 SEGUNDO
-						--# LIBERA CHOCOLATE
-						w_res_3 <= w_res_3 - 1;
-						--#ENVIA SINAL PRO TIMER DE 1 SEGUNDO
-						w_timer <= w_timer + 3;  -- 3 SEGUNDOS TOTAL
+					--------------------------------
+					if(i_data(4) = '1') then
+						v_count := v_count + 1;
+						o_sugar <= '1';
+					else
+						o_sugar <= '0';
 					end if;
-					if(i_sugar = "1") then
-						--# LIBERA SUGAR
-						w_res_4 <= w_res_4 - 1;
-						--#ENVIA SINAL PRO TIMER DE 1 SEGUNDO
-						w_timer <= w_timer + 1; -- 1 SEGUNDOS TOTAL
+					--------------------------------
+					if(i_data(5) = '1') then
+						o_repo <= '1';
+					else
+						o_repo <= '0';
 					end if;
-					if(i_size = "1") then --# GRANDE
-						--# LIBERA AGUA
-						--#ENVIA SINAL PRO TIMER DE 10s
-						w_timer <= w_timer + 10; 
-					else --# PEQUENO
-						--# LIBERA AGUA 5S
-						--#ENVIA SINAL PRO TIMER DE 5s
-						w_timer <= w_timer + 5;
+					--------------------------------
+					if(i_data(6) = '1') then
+						o_temp <= '1';
+					else
+						o_temp <= '0';
 					end if;
-					--# ENVIA SINAL PRO TIMER CONTAR o valor de w_timer
-					if(w_timer < timer) then --# EM QUANTO FOR MENOR ELE FICA AQUI NO LOOP
+					if(i_data(7) = '1') then
+						o_prepare <= '1';
+					else
+						o_prepare <= '0';
+					end if;
+					--------------------------------
+					w_state <= st_idle;
+				--# FIM ESTADO LED TYPE 1
+				--# INICIO ESTADO LED TYPE 2
+				when st_timer => -- timer testado 22/06
+					if(w_timer = "101111101011111000010000000") then
+						w_t_seg <= w_t_seg + 1;
+						w_timer <= (others => '0');
+					elsif(w_t_seg = v_count) then -- TIMER COMPLETOU 4 SEGUNDS
+						o_done <= '1';
+						v_count := "0000";
+						w_t_seg <= (others => '0');
+						w_timer <= (others => '0');
+						w_state <= st_t_done;
+					else
+						w_timer <= w_timer + 1;
+					end if;
+				--# FIM ESTADO TIMER
+				when st_t_done =>
+					-- Completou 250 ms
+					if(w_timer = "101111101011110000100000‬") then
+						o_led <= '1';
+						w_t_ms <= w_t_ms + 1;
+						w_timer <= (others => '0');
+					else
+						o_led <= '0';
+					end if;
+					
+					-- Completou 1 sec
+					if(w_t_ms = "0100") then -- 4 x 250ms = 1 sec
+						w_t_seg <= w_t_seg + 1;
+						w_t_ms <= (others => '0');
+					elsif(w_t_seg = "0101") then -- TIMER COMPLETOU 5 SEGUNDOS DE LED PISCANTE
+						o_done <= '0';
+						w_t_seg <= (others => '0');
+						w_timer <= (others => '0');
 						w_state <= st_idle;
 					end if;
+					
+					w_timer <= w_timer + 1;
+					
 				when others =>
 					w_state <= st_idle;
 				end case;
 		end if;
 	end process UU1;
-	--------------
-	-- Component BCD
-	
-	U_BCD: bcd
-		port map (
-			i_data => w_disp_0
-		);
-		
-	U_TOP: top_logic
-	port map(
-		--INPUTS
-		i_disp_1  => w_disp_1, 
-		i_disp_2  => w_disp_2,
-		i_disp_3  => w_disp_3,
-	);
-	
-	
 end behavioral;

@@ -1,0 +1,29 @@
+C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd {1 {vcom -work 2test -2002 -explicit -vopt C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd
+Model Technology ModelSim SE-64 vcom 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 20:50:41 on Jul 07,2019
+vcom -reportprogress 300 -work 2test -2002 -explicit -vopt C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity leds_machine
+-- Compiling architecture behavioral of leds_machine
+End time: 20:50:41 on Jul 07,2019, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+
+} {} {}} C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd {1 {vcom -work 2test -2002 -explicit -vopt C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd
+Model Technology ModelSim SE-64 vcom 10.5 Compiler 2016.02 Feb 13 2016
+Start time: 20:50:41 on Jul 07,2019
+vcom -reportprogress 300 -work 2test -2002 -explicit -vopt C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity test_led
+-- Compiling architecture behavioral of test_led
+End time: 20:50:41 on Jul 07,2019, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+
+} {} {}}

@@ -7,35 +7,26 @@ entity button_display_machine is
 	generic (
 		p_disp : INTEGER := 8
 	);
-	Port(
+	port(
 		i_clk : in STD_LOGIC;
 		i_rst : in STD_LOGIC;
 		i_done : in STD_LOGIC;
 		i_wait : in STD_LOGIC;
-		i_read : in STD_LOGIC;
-		o_display_1 : out STD_LOGIC_VECTOR(p_disp-1 downto 0);
-		o_display_2 : out STD_LOGIC_VECTOR(p_disp-1 downto 0);
-		o_display_3 : out STD_LOGIC_VECTOR(p_disp-1 downto 0);
-		o_display_4 : out STD_LOGIC_VECTOR(p_disp-1 downto 0);
+		o_disp_1 : out STD_LOGIC_VECTOR(p_disp-1 downto 0);
+		o_disp_2 : out STD_LOGIC_VECTOR(p_disp-1 downto 0);
+		o_disp_3 : out STD_LOGIC_VECTOR(p_disp-1 downto 0);
+		o_disp_4 : out STD_LOGIC_VECTOR(p_disp-1 downto 0)
 	);
 end button_display_machine;
 
 architecture behavioral of button_display_machine is
 	-- Internal signals
 	----------------------------------------------------
-type w_state_type is (st_idle, st_disp_wait, st_disp_done);
+	type w_state_type is (st_idle, st_disp_wait, st_disp_done);
 	attribute syn_encoding : string;
 	attribute syn_encoding of w_state_type : type is "safe";
 	
 	signal w_state : w_state_type;
-	signal w_disp_1 : STD_LOGIC_VECTOR(p_disp-1 downto 0);
-	signal w_disp_2 : STD_LOGIC_VECTOR(p_disp-1 downto 0);
-	signal w_disp_3 : STD_LOGIC_VECTOR(p_disp-1 downto 0);
-	signal w_disp_4 : STD_LOGIC_VECTOR(p_disp-1 downto 0);
-	signal w_out_disp_1 : STD_LOGIC_VECTOR(p_disp-1 downto 0);
-	signal w_out_disp_2 : STD_LOGIC_VECTOR(p_disp-1 downto 0);
-	signal w_out_disp_3 : STD_LOGIC_VECTOR(p_disp-1 downto 0);
-	signal w_out_disp_4 : STD_LOGIC_VECTOR(p_disp-1 downto 0);
 	-----------------------------------------------------
 	-- BCD DEVICE
 	component bcd is
@@ -48,72 +39,50 @@ type w_state_type is (st_idle, st_disp_wait, st_disp_done);
 	
 begin
 	
-	UU1 : process(i_clk, i_rst, st_disp_wait, st_disp_done)
+	UU1 : process(i_clk, i_rst)
 	begin
 		if (i_rst = '0') then
 			w_state <= st_idle;
-			w_disp_done <= (OTHERS => '0'); 
-			w_disp_1  <= (OTHERS => '0');
-			w_disp_2  <= (OTHERS => '0');
-			w_disp_3  <= (OTHERS => '0');
-			w_disp_4  <= (OTHERS => '0');
-			w_out_disp_1  <= (OTHERS => '0');
-			w_out_disp_2  <= (OTHERS => '0');
-			w_out_disp_3  <= (OTHERS => '0');
-			w_out_disp_4  <= (OTHERS => '0');
+			o_disp_1 <= (others => '0');
+			o_disp_2 <= (others => '0');
+			o_disp_3 <= (others => '0');
+			o_disp_4 <= (others => '0');
 		elsif rising_edge(i_clk) then
 			case w_state is
 				when st_idle =>
-					if(i_done = "1" and i_read = "1") then
-						w_state <= w_disp_done;
-					end if;
-					if(i_wait = "1" and i_read = "1") then
-						w_state <= w_disp_wait;
+					--# DONE DISPLAY
+					if(i_done = '1') then
+						w_state <= st_disp_done;
+					elsif(i_done = '0') then
+						o_disp_1 <= (others => '0');
+						o_disp_2 <= (others => '0');
+						o_disp_3 <= (others => '0');
+						o_disp_4 <= (others => '0');
+					elsif(i_wait = '0') then
+						o_disp_1 <= (others => '0');
+						o_disp_2 <= (others => '0');
+						o_disp_3 <= (others => '0');
+						o_disp_4 <= (others => '0');
+					--# WAIT DISPLAY
+					elsif(i_wait = '1') then
+						w_state <= st_disp_wait;
 					end if;
 				when st_disp_done =>
-					w_disp_1 = "11100011";
-					w_disp_2 = "11110011";
-					w_disp_3 = "11111000";
-					w_disp_4 = "10010001";
+					o_disp_1 <= "00000000";
+					o_disp_2 <= "00000001";
+					o_disp_3 <= "00000010";
+					o_disp_4 <= "00000011";
 					w_state <= st_idle;
 				when st_disp_wait =>
-					w_disp_1 = "11111111";
-					w_disp_2 = "11111111";
-					w_disp_3 = "11111111";
-					w_disp_4 = "11111111";
+					o_disp_1 <= "11111111";
+					o_disp_2 <= "11111111";
+					o_disp_3 <= "11111111";
+					o_disp_4 <= "11111111";
 					w_state <= st_idle;
 				when others =>
 					w_state <= st_idle;
 				end case;
 		end if;
 	end process UU1;
-	--------------
-	-- Component BCD
-	
-	U_BCD_1: bcd
-	port map (
-		i_data => w_disp_1,
-		o_q => w_out_disp_1
-	);
-	
-	U_BCD_2: bcd
-	port map (
-		i_data => w_disp_2,
-		o_q => w_out_disp_2
-	);
-	
-	U_BCD_3: bcd
-	port map (
-		i_data => w_disp_3,
-		o_q => w_out_disp_3
-	);
-	
-	U_BCD_4: bcd
-	port map (
-		i_data => w_disp_4,
-		o_q => w_out_disp_4
-	);
-		
-	
 	
 end behavioral;

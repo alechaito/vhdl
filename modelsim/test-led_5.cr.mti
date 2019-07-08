@@ -1,14 +1,4 @@
-C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd
-Model Technology ModelSim SE-64 vcom 10.5 Compiler 2016.02 Feb 13 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity test_led
--- Compiling architecture behavioral of test_led
-
-} {} {}} C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd
+C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd
 Model Technology ModelSim SE-64 vcom 10.5 Compiler 2016.02 Feb 13 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -17,5 +7,15 @@ Model Technology ModelSim SE-64 vcom 10.5 Compiler 2016.02 Feb 13 2016
 -- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity leds_machine
 -- Compiling architecture behavioral of leds_machine
+
+} {} {}} C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd {1 {vcom -work work -2002 -explicit -vopt -stats=none C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd
+Model Technology ModelSim SE-64 vcom 10.5 Compiler 2016.02 Feb 13 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity test_led
+-- Compiling architecture behavioral of test_led
 
 } {} {}}

@@ -19,20 +19,20 @@ n@_opt
 Z3 OL;O;10.5;63
 R0
 T_opt1
-!s110 1562344571
-V1P@b:=RgoXDcUaQ=]?Id70
-04 13 10 work input_machine behavioral 1
-=1-b06ebf66d732-5d1f7c7b-2f9-1180
+!s110 1562592768
+V^X0URZ51oH5^Rib[e_h^`0
+04 6 10 work tb_led behavioral 1
+=1-b06ebf66d732-5d2345ff-e3-1a88
 R1
 R2
 n@_opt1
 R3
 R0
 T_opt2
-!s110 1562429220
-VGjT1=ezflc_MEZ>b=SPeE2
+!s110 1562597701
+VOO^[lcYEZYRCbj9>Yj82i1
 04 8 10 work test_led behavioral 1
-=1-b06ebf66d732-5d20c724-218-34b4
+=1-b06ebf66d732-5d235945-338-2700
 R1
 R2
 n@_opt2
@@ -81,7 +81,7 @@ R16
 R17
 R18
 Eleds_machine
-Z19 w1562428989
+Z19 w1562597514
 R5
 R6
 R7
@@ -95,10 +95,10 @@ VzI[<XllR1[cAZQ]RPoh:P0
 !s100 ]XIJ@Ia`25Te?aTjKbJMA2
 R12
 32
-Z22 !s110 1562429122
+Z22 !s110 1562597691
 !i10b 1
-Z23 !s108 1562429122.000000
-Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd|
+Z23 !s108 1562597691.000000
+Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd|
 Z25 !s107 C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd|
 !i113 0
 R17
@@ -109,10 +109,10 @@ R6
 R7
 R8
 DEx4 work 12 leds_machine 0 22 zI[<XllR1[cAZQ]RPoh:P0
-l45
+l41
 L31
-V_=bF<[YjleS89lG193CAE2
-!s100 LG^nCCWi?Gbk>V7=fZ[?K2
+VzGXXL]2zS[RF_IB_Bh=Hm0
+!s100 UNT0d[7[NaHE=elRa`k=12
 R12
 32
 R22
@@ -123,26 +123,112 @@ R25
 !i113 0
 R17
 R18
-Etest_input
-Z26 w1562353577
+Em_led
+Z26 w1562591829
 R5
 R6
 R7
 R8
 R9
-Z27 8C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd
-Z28 FC:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd
+Z27 8C:/Users/Ale/Documents/ufsc/vhdl/tb_led/m_led.vhd
+Z28 FC:/Users/Ale/Documents/ufsc/vhdl/tb_led/m_led.vhd
+l0
+L6
+VO7l0WA37GXek@l:d=JY8_1
+!s100 7iPdZ_J3eP;Pd9dVG9XQ70
+R12
+32
+Z29 !s110 1562592758
+!i10b 1
+Z30 !s108 1562592757.000000
+Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|C:/Users/Ale/Documents/ufsc/vhdl/tb_led/m_led.vhd|
+Z32 !s107 C:/Users/Ale/Documents/ufsc/vhdl/tb_led/m_led.vhd|
+!i113 0
+R17
+R18
+Abehavioral
+R5
+R6
+R7
+R8
+DEx4 work 5 m_led 0 22 O7l0WA37GXek@l:d=JY8_1
+l35
+L23
+Vkc;kY>4lRS_@oLVD^d9Z52
+!s100 `ihjdK[`FGMl3Y8>_>S3b0
+R12
+32
+R29
+!i10b 1
+R30
+R31
+R32
+!i113 0
+R17
+R18
+Etb_led
+Z33 w1562592673
+R5
+R6
+R7
+R8
+R9
+Z34 8C:/Users/Ale/Documents/ufsc/vhdl/tb_led/tb_led.vhd
+Z35 FC:/Users/Ale/Documents/ufsc/vhdl/tb_led/tb_led.vhd
+l0
+L6
+VNUTJf]=Va6zMGU0_6YiH33
+!s100 Bzd`z^g[F9_;IkIVRnZQ41
+R12
+32
+Z36 !s110 1562592757
+!i10b 1
+R30
+Z37 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|C:/Users/Ale/Documents/ufsc/vhdl/tb_led/tb_led.vhd|
+Z38 !s107 C:/Users/Ale/Documents/ufsc/vhdl/tb_led/tb_led.vhd|
+!i113 0
+R17
+R18
+Abehavioral
+R5
+R6
+R7
+R8
+DEx4 work 6 tb_led 0 22 NUTJf]=Va6zMGU0_6YiH33
+l34
+L12
+Vbi48JE^iLeZU>R9oHha[:3
+!s100 h3?m?8ZJD:5<:Fk24_zJh0
+R12
+32
+R36
+!i10b 1
+R30
+R37
+R38
+!i113 0
+R17
+R18
+Etest_input
+Z39 w1562353577
+R5
+R6
+R7
+R8
+R9
+Z40 8C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd
+Z41 FC:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd
 l0
 L6
 V^AoQ3PE:MUEh>PBNf:MoS0
 !s100 2hi]4JFjLH]IJi3``Em0U2
 R12
 32
-Z29 !s110 1562353586
+Z42 !s110 1562353586
 !i10b 1
-Z30 !s108 1562353586.000000
-Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd|
-Z32 !s107 C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd|
+Z43 !s108 1562353586.000000
+Z44 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd|
+Z45 !s107 C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd|
 !i113 0
 R17
 R18
@@ -158,34 +244,34 @@ V1ORkhgn4Y;fGZ`g[_NdVW3
 !s100 `Bo45Z8G`D^L^Ej0YeQYZ2
 R12
 32
-R29
+R42
 !i10b 1
-R30
-R31
-R32
+R43
+R44
+R45
 !i113 0
 R17
 R18
 Etest_led
-Z33 w1562429197
+Z46 w1562597561
 R5
 R6
 R7
 R8
 R9
-Z34 8C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd
-Z35 FC:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd
+Z47 8C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd
+Z48 FC:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd
 l0
 L6
 VW0WebHkBf0MSmfLCYZEYT3
 !s100 D039onan1DlJOEE;8c;Wj0
 R12
 32
-Z36 !s110 1562429211
+R22
 !i10b 1
-Z37 !s108 1562429211.000000
-Z38 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd|
-Z39 !s107 C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd|
+R23
+Z49 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd|
+Z50 !s107 C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd|
 !i113 0
 R17
 R18
@@ -195,17 +281,17 @@ R6
 R7
 R8
 DEx4 work 8 test_led 0 22 W0WebHkBf0MSmfLCYZEYT3
-l53
+l51
 L13
-VWTHdO7lLkKNJz6A;?PbIV3
-!s100 WfogkilEOHZglR;Nb?dI_3
+V<=Df8Nn=P1@GEM1aj<YFM1
+!s100 eiD?P:h?<`lnRcA9hl]md2
 R12
 32
-R36
+R22
 !i10b 1
-R37
-R38
-R39
+R23
+R49
+R50
 !i113 0
 R17
 R18

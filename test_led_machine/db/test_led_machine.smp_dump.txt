@@ -1,0 +1,6 @@
+
+State Machine - |test_led|leds_machine:U1|w_state
+Name w_state.st_timer w_state.st_led_start w_state.st_idle 
+w_state.st_idle 0 0 0 
+w_state.st_led_start 0 1 1 
+w_state.st_timer 1 0 1 

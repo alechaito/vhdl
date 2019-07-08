@@ -14,12 +14,10 @@ architecture behavioral of test_led is
 
 	signal w_clk 				: STD_LOGIC;
 	signal w_rst 				: STD_LOGIC;
-	signal w_test				: STD_LOGIC;
 	
 	signal w_i_data 			: STD_LOGIC_VECTOR(t_data-1 downto 0);
 	signal w_i_read 			: STD_LOGIC;
-	
-	--signal w_type_1 		: STD_LOGIC;
+	signal w_type_1 		: STD_LOGIC;
 	signal w_type_2 		: STD_LOGIC;
 	signal w_type_3 		: STD_LOGIC;
 	signal w_size 			: STD_LOGIC;
@@ -60,11 +58,9 @@ begin
 			
 			i_data 		=> w_i_data,
 			i_read 		=> w_i_read,
-			o_type_1 	=> w_test,
 			--- OUTPUTS
-			
-			--o_type_1 => w_type_1,
-			--o_type_2 => w_type_2,
+			o_type_1 => w_type_1,
+			o_type_2 => w_type_2,
 			o_type_3 	=> w_type_3,
 			o_size 		=> w_size,
 			o_sugar		=> w_sugar,
@@ -93,11 +89,10 @@ begin
 	process begin 
 		w_i_data <= "10011001";
 		w_i_read <= '1';
-		--w_type_1 <= '0';
 		wait for 20 NS;
+		w_i_read <= '0';
 		--w_i_read_timer <= '1';
 		--w_i_data_timer <= "00000001";
 	end process;
-	
 	
 end behavioral;

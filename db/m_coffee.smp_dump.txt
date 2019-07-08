@@ -1,0 +1,23 @@
+
+State Machine - |m_coffee|button_display_machine:U3|w_state
+Name w_state.st_disp_done w_state.st_disp_wait w_state.st_idle 
+w_state.st_idle 0 0 0 
+w_state.st_disp_wait 0 1 1 
+w_state.st_disp_done 1 0 1 
+
+State Machine - |m_coffee|leds_machine:U2|w_state
+Name w_state.st_t_done w_state.st_timer w_state.st_led_start w_state.st_idle 
+w_state.st_idle 0 0 0 0 
+w_state.st_led_start 0 0 1 1 
+w_state.st_timer 0 1 0 1 
+w_state.st_t_done 1 0 0 1 
+
+State Machine - |m_coffee|input_machine:U1|w_state
+Name w_state.st_check_temp w_state.st_check_valv w_state.st_check_sugar w_state.st_check_size w_state.st_check_type w_state.st_check_repo w_state.st_idle 
+w_state.st_idle 0 0 0 0 0 0 0 
+w_state.st_check_repo 0 0 0 0 0 1 1 
+w_state.st_check_type 0 0 0 0 1 0 1 
+w_state.st_check_size 0 0 0 1 0 0 1 
+w_state.st_check_sugar 0 0 1 0 0 0 1 
+w_state.st_check_valv 0 1 0 0 0 0 1 
+w_state.st_check_temp 1 0 0 0 0 0 1 

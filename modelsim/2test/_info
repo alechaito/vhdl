@@ -1,0 +1,105 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Ale/Documents/ufsc/vhdl/modelsim
+T_opt
+!s110 1562543452
+V5=UM5i9;HTd9BW@`DM53T0
+04 8 10 work test_led behavioral 1
+=1-b06ebf66d732-5d22855c-31b-1e2c
+o-quiet -auto_acc_if_foreign -work 2test
+tCvgOpt 0
+n@_opt
+OL;O;10.5;63
+Eleds_machine
+Z1 w1562539216
+Z2 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z3 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z6 8C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd
+Z7 FC:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd
+l0
+L6
+VN_UWlRS4Q[Ja>:m[d]<a81
+!s100 8mle<@a4nA=Y[SIT]L;I51
+Z8 OL;C;10.5;63
+32
+Z9 !s110 1562543441
+!i10b 1
+Z10 !s108 1562543441.000000
+Z11 !s90 -reportprogress|300|-work|2test|-2002|-explicit|-vopt|C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd|
+Z12 !s107 C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/leds_machine.vhd|
+!i113 0
+Z13 o-work 2test -2002 -explicit
+Z14 tExplicit 1 CvgOpt 0
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 12 leds_machine 0 22 N_UWlRS4Q[Ja>:m[d]<a81
+l35
+L23
+VW82NbU=ZB[IH5GnP;FP::1
+!s100 9D@a@NkW[4kQceYX_KSAR0
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 0
+R13
+R14
+Etest_led
+Z15 w1562539279
+R2
+R3
+R4
+R5
+R0
+Z16 8C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd
+Z17 FC:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd
+l0
+L6
+VJL>?SYA;LGFail]B=2@zA1
+!s100 D039onan1DlJOEE;8c;Wj0
+R8
+32
+R9
+!i10b 1
+R10
+Z18 !s90 -reportprogress|300|-work|2test|-2002|-explicit|-vopt|C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd|
+Z19 !s107 C:/Users/Ale/Documents/ufsc/vhdl/test_led_machine/test_led.vhd|
+!i113 0
+R13
+R14
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 8 test_led 0 22 JL>?SYA;LGFail]B=2@zA1
+l34
+L13
+VGfOQc;EDnSb?;JD6Fmc`92
+!s100 H2:gKn56Rog7ok[7[Q54n0
+R8
+32
+R9
+!i10b 1
+R10
+R18
+R19
+!i113 0
+R13
+R14
