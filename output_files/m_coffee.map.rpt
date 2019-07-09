@@ -1,5 +1,5 @@
 Analysis & Synthesis report for m_coffee
-Mon Jul 08 13:46:53 2019
+Mon Jul 08 23:47:16 2019
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -18,18 +18,19 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
  10. State Machine - |m_coffee|input_machine:U1|w_state
  11. Registers Protected by Synthesis
  12. Registers Removed During Synthesis
- 13. General Register Statistics
- 14. Inverted Register Statistics
- 15. Multiplexer Restructuring Statistics (Restructuring Performed)
- 16. Source assignments for input_machine:U1
- 17. Source assignments for leds_machine:U2
- 18. Source assignments for button_display_machine:U3
- 19. Parameter Settings for User Entity Instance: Top-level Entity: |m_coffee
- 20. Parameter Settings for User Entity Instance: input_machine:U1
- 21. Parameter Settings for User Entity Instance: leds_machine:U2
- 22. Parameter Settings for User Entity Instance: button_display_machine:U3
- 23. Elapsed Time Per Partition
- 24. Analysis & Synthesis Messages
+ 13. Removed Registers Triggering Further Register Optimizations
+ 14. General Register Statistics
+ 15. Inverted Register Statistics
+ 16. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 17. Source assignments for input_machine:U1
+ 18. Source assignments for leds_machine:U2
+ 19. Source assignments for button_display_machine:U3
+ 20. Parameter Settings for User Entity Instance: Top-level Entity: |m_coffee
+ 21. Parameter Settings for User Entity Instance: input_machine:U1
+ 22. Parameter Settings for User Entity Instance: leds_machine:U2
+ 23. Parameter Settings for User Entity Instance: button_display_machine:U3
+ 24. Elapsed Time Per Partition
+ 25. Analysis & Synthesis Messages
 
 
 
@@ -55,15 +56,15 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Jul 08 13:46:53 2019      ;
+; Analysis & Synthesis Status        ; Successful - Mon Jul 08 23:47:16 2019      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; m_coffee                                   ;
 ; Top-level Entity Name              ; m_coffee                                   ;
 ; Family                             ; Cyclone III                                ;
-; Total logic elements               ; 151                                        ;
-;     Total combinational functions  ; 141                                        ;
-;     Dedicated logic registers      ; 79                                         ;
-; Total registers                    ; 79                                         ;
+; Total logic elements               ; 327                                        ;
+;     Total combinational functions  ; 316                                        ;
+;     Dedicated logic registers      ; 203                                        ;
+; Total registers                    ; 203                                        ;
 ; Total pins                         ; 50                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0                                          ;
@@ -187,28 +188,28 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 151         ;
+; Estimated Total logic elements              ; 327         ;
 ;                                             ;             ;
-; Total combinational functions               ; 141         ;
+; Total combinational functions               ; 316         ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 70          ;
+;     -- 4 input functions                    ; 112         ;
 ;     -- 3 input functions                    ; 26          ;
-;     -- <=2 input functions                  ; 45          ;
+;     -- <=2 input functions                  ; 178         ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 112         ;
-;     -- arithmetic mode                      ; 29          ;
+;     -- normal mode                          ; 163         ;
+;     -- arithmetic mode                      ; 153         ;
 ;                                             ;             ;
-; Total registers                             ; 79          ;
-;     -- Dedicated logic registers            ; 79          ;
+; Total registers                             ; 203         ;
+;     -- Dedicated logic registers            ; 203         ;
 ;     -- I/O registers                        ; 0           ;
 ;                                             ;             ;
 ; I/O pins                                    ; 50          ;
 ; Embedded Multiplier 9-bit elements          ; 0           ;
 ; Maximum fan-out node                        ; i_clk~input ;
-; Maximum fan-out                             ; 79          ;
-; Total fan-out                               ; 803         ;
-; Average fan-out                             ; 2.51        ;
+; Maximum fan-out                             ; 203         ;
+; Total fan-out                               ; 1721        ;
+; Average fan-out                             ; 2.78        ;
 +---------------------------------------------+-------------+
 
 
@@ -217,10 +218,10 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +--------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------+--------------+
 ; Compilation Hierarchy Node     ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                 ; Library Name ;
 +--------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------+--------------+
-; |m_coffee                      ; 141 (0)           ; 79 (0)       ; 0           ; 0            ; 0       ; 0         ; 50   ; 0            ; |m_coffee                           ; work         ;
+; |m_coffee                      ; 316 (0)           ; 203 (0)      ; 0           ; 0            ; 0       ; 0         ; 50   ; 0            ; |m_coffee                           ; work         ;
 ;    |button_display_machine:U3| ; 2 (2)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |m_coffee|button_display_machine:U3 ; work         ;
-;    |input_machine:U1|          ; 50 (50)           ; 25 (25)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |m_coffee|input_machine:U1          ; work         ;
-;    |leds_machine:U2|           ; 89 (89)           ; 52 (52)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |m_coffee|leds_machine:U2           ; work         ;
+;    |input_machine:U1|          ; 226 (226)         ; 149 (149)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |m_coffee|input_machine:U1          ; work         ;
+;    |leds_machine:U2|           ; 88 (88)           ; 52 (52)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |m_coffee|leds_machine:U2           ; work         ;
 +--------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -291,24 +292,36 @@ Encoding Type: Safe One-Hot
 +------------------------------------------------+------------------------------------------------------------+
 ; Register name                                  ; Reason for Removal                                         ;
 +------------------------------------------------+------------------------------------------------------------+
-; button_display_machine:U3|o_disp_2[0]          ; Merged with button_display_machine:U3|o_disp_4[0]          ;
 ; button_display_machine:U3|o_disp_4[1]          ; Merged with button_display_machine:U3|o_disp_4[0]          ;
+; button_display_machine:U3|o_disp_2[0]          ; Merged with button_display_machine:U3|o_disp_4[0]          ;
 ; button_display_machine:U3|o_disp_3[1]          ; Merged with button_display_machine:U3|o_disp_4[0]          ;
 ; button_display_machine:U3|o_disp_1[1..7]       ; Merged with button_display_machine:U3|o_disp_1[0]          ;
 ; button_display_machine:U3|o_disp_2[1..7]       ; Merged with button_display_machine:U3|o_disp_1[0]          ;
 ; button_display_machine:U3|o_disp_3[0,2..7]     ; Merged with button_display_machine:U3|o_disp_1[0]          ;
 ; button_display_machine:U3|o_disp_4[2..7]       ; Merged with button_display_machine:U3|o_disp_1[0]          ;
+; input_machine:U1|\UU1:v_repo[1..9,11..31]      ; Merged with input_machine:U1|\UU1:v_repo[10]               ;
+; input_machine:U1|\UU1:v_sugar[1..9,11..31]     ; Merged with input_machine:U1|\UU1:v_sugar[10]              ;
 ; input_machine:U1|\UU1:v_type[2..9,11..31]      ; Merged with input_machine:U1|\UU1:v_type[10]               ;
 ; input_machine:U1|\UU1:v_size[1..9,11..31]      ; Merged with input_machine:U1|\UU1:v_size[10]               ;
-; input_machine:U1|\UU1:v_sugar[1..9,11..31]     ; Merged with input_machine:U1|\UU1:v_sugar[10]              ;
 ; input_machine:U1|\UU1:v_type[10]               ; Stuck at GND due to stuck port data_in                     ;
-; input_machine:U1|\UU1:v_size[10]               ; Stuck at GND due to stuck port data_in                     ;
+; input_machine:U1|\UU1:v_repo[10]               ; Stuck at GND due to stuck port data_in                     ;
 ; input_machine:U1|\UU1:v_sugar[10]              ; Stuck at GND due to stuck port data_in                     ;
+; input_machine:U1|\UU1:v_size[10]               ; Stuck at GND due to stuck port data_in                     ;
 ; button_display_machine:U3|o_disp_1[0]          ; Stuck at GND due to stuck port data_in                     ;
 ; button_display_machine:U3|w_state.st_disp_wait ; Stuck at GND due to stuck port data_in                     ;
 ; button_display_machine:U3|w_state.st_idle      ; Merged with button_display_machine:U3|w_state.st_disp_done ;
-; Total Number of Removed Registers = 125        ;                                                            ;
+; Total Number of Removed Registers = 156        ;                                                            ;
 +------------------------------------------------+------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                        ;
++----------------------------------+---------------------------+---------------------------------------------------------------------+
+; Register name                    ; Reason for Removal        ; Registers Removed due to This Register                              ;
++----------------------------------+---------------------------+---------------------------------------------------------------------+
+; input_machine:U1|\UU1:v_repo[10] ; Stuck at GND              ; input_machine:U1|\UU1:v_sugar[10], input_machine:U1|\UU1:v_size[10] ;
+;                                  ; due to stuck port data_in ;                                                                     ;
++----------------------------------+---------------------------+---------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -316,12 +329,12 @@ Encoding Type: Safe One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 79    ;
+; Total registers                              ; 203   ;
 ; Number of registers using Synchronous Clear  ; 31    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 57    ;
+; Number of registers using Asynchronous Clear ; 182   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 49    ;
+; Number of registers using Clock Enable       ; 173   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -331,10 +344,16 @@ Encoding Type: Safe One-Hot
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; input_machine:U1|w_res_1[3]            ; 2       ;
-; input_machine:U1|w_res_1[1]            ; 4       ;
-; input_machine:U1|w_res_stats           ; 5       ;
-; Total number of inverted registers = 3 ;         ;
+; input_machine:U1|\UU1:v_res_1[3]       ; 2       ;
+; input_machine:U1|\UU1:v_res_1[1]       ; 2       ;
+; input_machine:U1|\UU1:v_res_2[3]       ; 2       ;
+; input_machine:U1|\UU1:v_res_2[1]       ; 2       ;
+; input_machine:U1|\UU1:v_res_3[3]       ; 2       ;
+; input_machine:U1|\UU1:v_res_3[1]       ; 2       ;
+; input_machine:U1|\UU1:v_res_4[3]       ; 2       ;
+; input_machine:U1|\UU1:v_res_4[1]       ; 2       ;
+; input_machine:U1|\UU1:v_repo[0]        ; 5       ;
+; Total number of inverted registers = 9 ;         ;
 +----------------------------------------+---------+
 
 
@@ -343,14 +362,16 @@ Encoding Type: Safe One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |m_coffee|leds_machine:U2|w_t_ms[0]         ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |m_coffee|leds_machine:U2|w_t_ms[2]         ;
+; 3:1                ; 30 bits   ; 60 LEs        ; 0 LEs                ; 60 LEs                 ; Yes        ; |m_coffee|input_machine:U1|\UU1:v_res_2[29] ;
 ; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |m_coffee|leds_machine:U2|\UU1:v_count[3]   ;
-; 5:1                ; 27 bits   ; 81 LEs        ; 27 LEs               ; 54 LEs                 ; Yes        ; |m_coffee|leds_machine:U2|w_timer[15]       ;
+; 5:1                ; 27 bits   ; 81 LEs        ; 27 LEs               ; 54 LEs                 ; Yes        ; |m_coffee|leds_machine:U2|w_timer[23]       ;
 ; 7:1                ; 4 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; Yes        ; |m_coffee|leds_machine:U2|w_t_seg[3]        ;
 ; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |m_coffee|input_machine:U1|\UU1:v_type[0]   ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 0 LEs                ; 4 LEs                  ; Yes        ; |m_coffee|input_machine:U1|\UU1:v_res_2[3]  ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |m_coffee|button_display_machine:U3|w_state ;
 ; 10:1               ; 4 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; No         ; |m_coffee|leds_machine:U2|Selector3         ;
-; 12:1               ; 4 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; No         ; |m_coffee|input_machine:U1|Selector100      ;
+; 15:1               ; 4 bits    ; 40 LEs        ; 16 LEs               ; 24 LEs                 ; No         ; |m_coffee|input_machine:U1|Selector99       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
 
 
@@ -430,7 +451,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -440,7 +461,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Mon Jul 08 13:46:49 2019
+    Info: Processing started: Mon Jul 08 23:47:12 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off m_coffee -c m_coffee
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file leds_machine.vhd
@@ -499,17 +520,26 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "o_disp_4[5]" is stuck at GND
     Warning (13410): Pin "o_disp_4[6]" is stuck at GND
     Warning (13410): Pin "o_disp_4[7]" is stuck at GND
+Critical Warning (18061): Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register input_machine:U1|\UU1:v_res_1[3] will power up to High
+    Critical Warning (18010): Register input_machine:U1|\UU1:v_res_1[1] will power up to High
+    Critical Warning (18010): Register input_machine:U1|\UU1:v_res_2[3] will power up to High
+    Critical Warning (18010): Register input_machine:U1|\UU1:v_res_2[1] will power up to High
+    Critical Warning (18010): Register input_machine:U1|\UU1:v_res_3[3] will power up to High
+    Critical Warning (18010): Register input_machine:U1|\UU1:v_res_3[1] will power up to High
+    Critical Warning (18010): Register input_machine:U1|\UU1:v_res_4[3] will power up to High
+    Critical Warning (18010): Register input_machine:U1|\UU1:v_res_4[1] will power up to High
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 201 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 377 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 9 input pins
     Info (21059): Implemented 41 output pins
-    Info (21061): Implemented 151 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 30 warnings
+    Info (21061): Implemented 327 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 39 warnings
     Info: Peak virtual memory: 4697 megabytes
-    Info: Processing ended: Mon Jul 08 13:46:53 2019
+    Info: Processing ended: Mon Jul 08 23:47:16 2019
     Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Total CPU time (on all processors): 00:00:04
 
 

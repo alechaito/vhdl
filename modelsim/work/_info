@@ -9,15 +9,14 @@ z2
 cModel Technology
 Z0 dC:/altera/proj-final/test-comp-display
 T_opt
-!s110 1562353592
-VVITDAQ4b9egD[M4oEc8QM0
+!s110 1562640174
+VB5Sf^0INiN81=lXkZGh_S0
 04 10 10 work test_input behavioral 1
-=1-b06ebf66d732-5d1f9fb8-13-1170
+=1-b06ebf66d732-5d23ff2e-173-2a90
 Z1 o-quiet -auto_acc_if_foreign -work work
 Z2 tCvgOpt 0
 n@_opt
 Z3 OL;O;10.5;63
-R0
 T_opt1
 !s110 1562592768
 V^X0URZ51oH5^Rib[e_h^`0
@@ -37,8 +36,9 @@ R1
 R2
 n@_opt2
 R3
+R0
 Einput_machine
-Z4 w1562352813
+Z4 w1562639722
 Z5 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
 Z6 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
 Z7 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
@@ -48,14 +48,14 @@ Z10 8C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/input_machine.vhd
 Z11 FC:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/input_machine.vhd
 l0
 L6
-Vk5nd:`icKi=YVU:5Oml^k2
-!s100 NUj1];1_7:m7dVeaidn>M3
+V<3g>9]c>AaMoYDFX2[jN20
+!s100 f^7liF5eOo?04j^QZToe?2
 Z12 OL;C;10.5;63
 32
-Z13 !s110 1562352824
+Z13 !s110 1562639833
 !i10b 1
-Z14 !s108 1562352824.000000
-Z15 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/input_machine.vhd|
+Z14 !s108 1562639833.000000
+Z15 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/input_machine.vhd|
 Z16 !s107 C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/input_machine.vhd|
 !i113 0
 Z17 o-work work -2002 -explicit
@@ -65,11 +65,11 @@ R5
 R6
 R7
 R8
-DEx4 work 13 input_machine 0 22 k5nd:`icKi=YVU:5Oml^k2
-l60
-L37
-VHCIVfn7lS7a63`2>nP?IP2
-!s100 AcZzCQ4oj==EWlVlZ^7EA1
+DEx4 work 13 input_machine 0 22 <3g>9]c>AaMoYDFX2[jN20
+l47
+L31
+VSWLB6JFOe`R?XzUZz6kh50
+!s100 9HAE2z^nn>kAX4_PBNB661
 R12
 32
 R13
@@ -210,7 +210,7 @@ R38
 R17
 R18
 Etest_input
-Z39 w1562353577
+Z39 w1562640133
 R5
 R6
 R7
@@ -224,9 +224,9 @@ V^AoQ3PE:MUEh>PBNf:MoS0
 !s100 2hi]4JFjLH]IJi3``Em0U2
 R12
 32
-Z42 !s110 1562353586
+Z42 !s110 1562640141
 !i10b 1
-Z43 !s108 1562353586.000000
+Z43 !s108 1562640141.000000
 Z44 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd|
 Z45 !s107 C:/Users/Ale/Documents/ufsc/vhdl/test_input_machine/test_input.vhd|
 !i113 0
@@ -238,10 +238,10 @@ R6
 R7
 R8
 DEx4 work 10 test_input 0 22 ^AoQ3PE:MUEh>PBNf:MoS0
-l62
+l57
 L12
-V1ORkhgn4Y;fGZ`g[_NdVW3
-!s100 `Bo45Z8G`D^L^Ej0YeQYZ2
+VzADRAE5ka1b3gPN4NcE7O2
+!s100 QFlLoF2`0YFGWFcilNPeU2
 R12
 32
 R42

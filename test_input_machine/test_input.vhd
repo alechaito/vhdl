@@ -50,12 +50,7 @@ architecture behavioral of test_input is
 			i_done		: in STD_LOGIC;
 			--#OUTPUTS
 			o_data 		: out STD_LOGIC_VECTOR(t_data-1 downto 0);
-			o_read 		: out STD_LOGIC;
-			
-			o_res1 		: out STD_LOGIC_VECTOR(3 downto 0);
-			o_res2 		: out STD_LOGIC_VECTOR(3 downto 0);
-			o_res3 		: out STD_LOGIC_VECTOR(3 downto 0);
-			o_res4 		: out STD_LOGIC_VECTOR(3 downto 0)
+			o_read 		: out STD_LOGIC
 		);
 	end component;
 	
@@ -78,12 +73,7 @@ begin
 			i_done		=> w_done,
 			--#OUTPUTS
 			o_data 		=> w_data,
-			o_read		=> w_read,
-			
-			o_res1 => w_res1,
-			o_res2 => w_res2,
-			o_res3 => w_res3,
-			o_res4 => w_res4
+			o_read		=> w_read
 		);
 
 	process 
@@ -114,7 +104,7 @@ begin
 		w_size <= '1';
 		wait for 20 NS;
 		w_prepare <= '1';
-		wait for 100 NS;
+		wait for 300 NS;
 		w_done <= '0';
 		wait;
 	end process;

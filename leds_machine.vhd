@@ -117,11 +117,11 @@ begin
 					w_state <= st_idle;
 				--# FIM ESTADO LED TYPE 1
 				--# INICIO ESTADO LED TYPE 2
-				when st_timer => -- timer testado 22/06
+				when st_timer =>
 					if(w_timer = "101111101011111000010000000") then
 						w_t_seg <= w_t_seg + 1;
 						w_timer <= (others => '0');
-					elsif(w_t_seg = v_count) then -- TIMER COMPLETOU 4 SEGUNDS
+					elsif(w_t_seg = v_count) then
 						o_done <= '1';
 						v_count := "0000";
 						w_t_seg <= (others => '0');
