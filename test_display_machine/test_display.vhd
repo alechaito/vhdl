@@ -70,13 +70,15 @@ begin
 		wait for 100 NS;
 		w_read <= '1';
 		w_done <= '1';
-		wait for 20 NS;
-		w_read <= '0';
+		wait for 50 NS;
+		w_done <= '0';
+		w_read <= '1';
 		wait for 50 NS;
 		w_read <= '1';
-		w_done <= '0';
-		wait for 20 NS;
+		w_wait <= '1';
+		wait for 50 NS;
 		w_read <= '0';
+		w_wait <= '0';
 		wait;
 	end process;
 	

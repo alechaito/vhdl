@@ -96,12 +96,12 @@ begin
 		w_temp <= '0';
 		--w_done <= '1';
 		wait for 20 NS;
-		w_type3 <= '1';
+		w_type1 <= '1';
 		w_done <= '1';
 		wait for 20 NS;
-		w_sugar <= '1';
+		w_sugar <= '0';
 		wait for 20 NS;
-		w_size <= '1';
+		w_size <= '0';
 		wait for 20 NS;
 		w_prepare <= '1';
 		wait for 300 NS;

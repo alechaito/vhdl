@@ -28,16 +28,6 @@ architecture behavioral of button_display_machine is
 	attribute syn_encoding of w_state_type : type is "safe";
 	
 	signal w_state : w_state_type;
-	-----------------------------------------------------
-	-- BCD DEVICE
-	component bcd is
-		port (
-			i_data  : in STD_LOGIC_VECTOR(p_disp-1 downto 0); 
-			o_q  : out STD_LOGIC_VECTOR(p_disp-1 downto 0)
-		);
-	end component;
-	-- TOP_LOGIC DEVICE WITH 3 DISPLAY TO COMPLETE 4
-	
 begin
 	
 	UU1 : process(i_clk, i_rst)
@@ -54,6 +44,9 @@ begin
 					--# DONE DISPLAY
 					if(i_done = '1' and i_read = '1') then
 						w_state <= st_disp_done;
+					--# WAIT DISPLAY
+					elsif(i_wait = '1' and i_read = '1') then
+						w_state <= st_disp_wait;
 					elsif(i_done = '0' and i_read = '1') then
 						o_disp_1 <= (others => '0');
 						o_disp_2 <= (others => '0');
@@ -64,9 +57,6 @@ begin
 						o_disp_2 <= (others => '0');
 						o_disp_3 <= (others => '0');
 						o_disp_4 <= (others => '0');
-					--# WAIT DISPLAY
-					elsif(i_wait = '1' and i_read = '1') then
-						w_state <= st_disp_wait;
 					end if;
 				when st_disp_done =>
 					o_disp_1 <= "00000000";
@@ -75,10 +65,10 @@ begin
 					o_disp_4 <= "00000011";
 					w_state <= st_idle;
 				when st_disp_wait =>
-					o_disp_1 <= "11111111";
-					o_disp_2 <= "11111111";
-					o_disp_3 <= "11111111";
-					o_disp_4 <= "11111111";
+					o_disp_1 <= "00000100";
+					o_disp_1 <= "00000101";
+					o_disp_1 <= "00000110";
+					o_disp_4 <= "00000000";
 					w_state <= st_idle;
 				when others =>
 					w_state <= st_idle;
